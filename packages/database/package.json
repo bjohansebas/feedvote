@@ -10,12 +10,12 @@
     "dev": "prisma studio"
   },
   "dependencies": {
-    "@prisma/client": "5.8.1"
+    "@prisma/client": "5.9.0"
   },
   "devDependencies": {
-    "@types/node": "20.11.5",
     "@feedvote/config": "workspace:*",
-    "prisma": "5.8.1",
+    "@types/node": "20.11.12",
+    "prisma": "5.9.0",
     "typescript": "5.3.3"
   }
 }
