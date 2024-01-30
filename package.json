@@ -7,15 +7,12 @@
     "lint": "turbo lint"
   },
   "devDependencies": {
-    "@repo/eslint-config": "workspace:*",
     "@feedvote/config": "workspace:*",
+    "@biomejs/biome": "1.5.3",
     "turbo": "latest"
   },
   "packageManager": "pnpm@8.9.0",
   "engines": {
     "node": ">=18"
-  },
-  "dependencies": {
-    "@biomejs/biome": "1.5.3"
   }
 }
