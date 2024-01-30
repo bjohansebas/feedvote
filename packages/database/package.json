@@ -1,0 +1,21 @@
+{
+  "name": "@feedvote/database",
+  "private": true,
+  "main": "./index.ts",
+  "types": "./index.ts",
+  "scripts": {
+    "db:generate": "prisma generate",
+    "db:push": "prisma db push --skip-generate",
+    "db:migrate": "prisma migrate dev",
+    "dev": "prisma studio"
+  },
+  "dependencies": {
+    "@prisma/client": "5.8.1"
+  },
+  "devDependencies": {
+    "@types/node": "20.11.5",
+    "@feedvote/config": "workspace:*",
+    "prisma": "5.8.1",
+    "typescript": "5.3.3"
+  }
+}
