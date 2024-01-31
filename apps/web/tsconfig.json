@@ -1,6 +1,11 @@
 {
   "extends": "@feedvote/config/tsconfig/nextjs.json",
   "compilerOptions": {
+    "baseUrl": ".",
+    "paths": {
+      "@/*": ["./*"],
+      "@lib/*": ["lib/*"]
+    },
     "plugins": [
       {
         "name": "next"

@@ -9,19 +9,20 @@ generator client {
 }
 
 model Account {
-  id                String  @id @default(cuid())
-  userId            String  @map("user_id")
-  type              String
-  provider          String
-  providerAccountId String  @map("provider_account_id")
-  refresh_token     String?
-  access_token      String?
-  expires_at        Int?
-  token_type        String?
-  scope             String?
-  id_token          String?
-  session_state     String?
-  user              User    @relation(fields: [userId], references: [id], onDelete: Cascade)
+  id                    String  @id @default(cuid())
+  userId                String  @map("user_id")
+  type                  String
+  provider              String
+  providerAccountId     String  @map("provider_account_id")
+  refresh_token         String?
+  refreshTokenExpiresIn Int?    @map("refresh_token_expires_in")
+  access_token          String?
+  expires_at            Int?
+  token_type            String?
+  scope                 String?
+  id_token              String?
+  session_state         String?
+  user                  User    @relation(fields: [userId], references: [id], onDelete: Cascade)
 
   @@unique([provider, providerAccountId])
   @@map("accounts")
