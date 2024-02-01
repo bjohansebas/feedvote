@@ -16,7 +16,7 @@ export default function RootLayout({
 }): JSX.Element {
   return (
     <html lang="en">
-      <body className={cn('min-h-screen bg-background antialiased', GeistSans.className)}>{children}</body>
+      <body className={cn('min-h-screen bg-background font-sans antialiased', GeistSans.variable)}>{children}</body>
     </html>
   )
 }
