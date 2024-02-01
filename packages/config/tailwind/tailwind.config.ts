@@ -4,7 +4,7 @@ import type { Config } from 'tailwindcss'
 
 const config: Config = {
   darkMode: ['class'],
-  content: ['./src/**/*.{js,ts,jsx,tsx,mdx}'],
+  content: ['app/**/*.{ts,tsx}', 'components/**/*.{ts,tsx}'],
   theme: {
     container: {
       center: true,
@@ -14,9 +14,6 @@ const config: Config = {
       },
     },
     extend: {
-      screens: {
-        xs: '420px',
-      },
       colors: {
         border: 'hsl(var(--border))',
         input: 'hsl(var(--input))',
@@ -53,9 +50,9 @@ const config: Config = {
         },
       },
       borderRadius: {
-        lg: '0.5rem',
-        md: 'calc(0.5rem - 2px)',
-        sm: 'calc(0.5rem - 4px)',
+        lg: 'var(--radius)',
+        md: 'calc(var(--radius) - 2px)',
+        sm: 'calc(var(--radius) - 4px)',
       },
       fontFamily: {
         sans: ['system-ui', 'sans-serif'],
