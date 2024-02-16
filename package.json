@@ -9,7 +9,7 @@
   "devDependencies": {
     "@feedvote/config": "workspace:*",
     "@biomejs/biome": "1.5.3",
-    "turbo": "latest"
+    "turbo": "1.12.4"
   },
   "packageManager": "pnpm@8.9.0",
   "engines": {

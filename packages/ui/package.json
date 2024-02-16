@@ -6,9 +6,9 @@
   "devDependencies": {
     "@feedvote/config": "workspace:*",
     "@feedvote/utils": "workspace:*",
-    "@types/node": "20.11.12",
-    "@types/react": "18.2.48",
-    "@types/react-dom": "18.2.18",
+    "@types/node": "20.11.19",
+    "@types/react": "18.2.55",
+    "@types/react-dom": "18.2.19",
     "react": "18.2.0",
     "typescript": "5.3.3"
   },
