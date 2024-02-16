@@ -16,7 +16,7 @@ export default function RootLayout({
 }): JSX.Element {
   return (
     <html lang="en">
-      <body className={cn('dark bg-background font-sans antialiased', GeistSans.variable)}>{children}</body>
+      <body className={cn('dark font-sans antialiased', GeistSans.variable)}>{children}</body>
     </html>
   )
 }
