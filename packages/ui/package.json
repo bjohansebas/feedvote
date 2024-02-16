@@ -2,6 +2,20 @@
   "name": "@feedvote/ui",
   "main": "./src/index.ts",
   "types": "./src/index.ts",
+  "exports": {
+    ".": {
+      "import": "./src/index.ts",
+      "default": "./src/index.ts"
+    },
+    "./components": {
+      "import": "./src/components/index.ts",
+      "default": "./src/components/index.ts"
+    },
+    "./icons": {
+      "import": "./src/icons/index.ts",
+      "default": "./src/icons/index.ts"
+    }
+  },
   "private": true,
   "devDependencies": {
     "@feedvote/config": "workspace:*",
