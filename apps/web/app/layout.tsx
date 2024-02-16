@@ -6,7 +6,7 @@ import type { Metadata } from 'next'
 import { cn } from '@feedvote/utils'
 
 export const metadata: Metadata = {
-  title: 'Feedvote',
+  title: 'FeedVote',
 }
 
 export default function RootLayout({
@@ -16,7 +16,7 @@ export default function RootLayout({
 }): JSX.Element {
   return (
     <html lang="en">
-      <body className={cn('min-h-screen bg-background font-sans antialiased', GeistSans.variable)}>{children}</body>
+      <body className={cn('dark bg-background font-sans antialiased', GeistSans.variable)}>{children}</body>
     </html>
   )
 }
