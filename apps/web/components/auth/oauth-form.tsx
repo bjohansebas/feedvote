@@ -1,12 +1,12 @@
 'use client'
 
-import { Button } from '@feedvote/ui/components'
+import { Button, Skeleton } from '@feedvote/ui/components'
 import { GithubIcon } from '@feedvote/ui/icons'
 
 import { signIn } from 'next-auth/react'
 import { useSearchParams } from 'next/navigation'
 
-export function RegisterForm() {
+export function OAuthForm() {
   const searchParams = useSearchParams()
   const next = searchParams?.get('next')
 
@@ -24,4 +24,8 @@ export function RegisterForm() {
       Continue with Github
     </Button>
   )
+}
+
+export function OAuthFormPlaceholder() {
+  return <Skeleton className="w-full h-11" />
 }
