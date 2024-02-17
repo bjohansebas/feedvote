@@ -20,6 +20,9 @@ importers:
 
   apps/web:
     dependencies:
+      '@aptabase/react':
+        specifier: 0.3.3
+        version: 0.3.3(react@18.2.0)
       '@feedvote/database':
         specifier: workspace:*
         version: link:../../packages/database
@@ -168,6 +171,14 @@ packages:
     resolution: {integrity: sha512-UrcABB+4bUrFABwbluTIBErXwvbsU/V7TZWfmbgJfbkwiBuziS9gxdODUyuiecfdGQ85jglMW6juS3+z5TsKLw==}
     engines: {node: '>=10'}
     dev: true
+
+  /@aptabase/react@0.3.3(react@18.2.0):
+    resolution: {integrity: sha512-/8pSVMv5kElaVD4ukDQmPzF7sw/VsOM/P/B/4tieUZt3zmACPcVpYTFQZ0oYESSn/yTvVIU1iTeXa6zKwxi4vw==}
+    peerDependencies:
+      react: ^18.0.0
+    dependencies:
+      react: 18.2.0
+    dev: false
 
   /@babel/runtime@7.23.9:
     resolution: {integrity: sha512-0CX6F+BI2s9dkUqr08KFrAIZgNFj75rdBU/DjCyYLIaV/quFjkk6T+EJ2LkZHyZTbEV4L5p97mNkUsHl2wLFAw==}

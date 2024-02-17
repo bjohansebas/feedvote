@@ -1,5 +1,7 @@
 import '@styles/globals.css'
 
+import { AptabaseProvider } from '@aptabase/react'
+
 import { GeistSans } from 'geist/font/sans'
 import type { Metadata } from 'next'
 
@@ -16,7 +18,9 @@ export default function RootLayout({
 }): JSX.Element {
   return (
     <html lang="en">
-      <body className={cn('dark font-sans antialiased', GeistSans.variable)}>{children}</body>
+      <body className={cn('dark font-sans antialiased', GeistSans.variable)}>
+        <AptabaseProvider appKey="A-US-1263066057">{children}</AptabaseProvider>
+      </body>
     </html>
   )
 }

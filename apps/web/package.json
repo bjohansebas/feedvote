@@ -8,6 +8,7 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@aptabase/react": "0.3.3",
     "@feedvote/database": "workspace:*",
     "@feedvote/ui": "workspace:*",
     "@feedvote/utils": "workspace:*",
