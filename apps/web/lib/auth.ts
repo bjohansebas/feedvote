@@ -1,7 +1,7 @@
 import { prisma } from '@feedvote/database'
-import { GITHUB_CLIENT_ID, GITHUB_CLIENT_SECRET } from '@feedvote/utils'
-import { PrismaAdapter } from '@next-auth/prisma-adapter'
+import { GITHUB_CLIENT_ID, GITHUB_CLIENT_SECRET } from '@feedvote/utils/constants'
 
+import { PrismaAdapter } from '@next-auth/prisma-adapter'
 import { AuthOptions } from 'next-auth'
 import GithubProvider from 'next-auth/providers/github'
 
@@ -15,6 +15,7 @@ export const authOptions: AuthOptions = {
     GithubProvider({
       clientId: GITHUB_CLIENT_ID as string,
       clientSecret: GITHUB_CLIENT_SECRET as string,
+      allowDangerousEmailAccountLinking: true,
     }),
   ],
   adapter: PrismaAdapter(prisma),
@@ -30,6 +31,9 @@ export const authOptions: AuthOptions = {
         secure: VERCEL_DEPLOYMENT,
       },
     },
+  },
+  pages: {
+    error: '/login',
   },
   callbacks: {
     jwt: async ({ token, user, trigger }) => {
