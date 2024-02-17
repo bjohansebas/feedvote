@@ -85,7 +85,7 @@ model Workspace {
   usersLimit Int               @default(1) @map("users_limit")
   invite     WorkspaceInvite[]
   users      WorkspaceUsers[]
-  boards     Board[]
+  projects   Project[]
 
   createdAt DateTime @default(now()) @map("created_at")
   updatedAt DateTime @updatedAt @map("updated_at")
@@ -122,16 +122,29 @@ model WorkspaceUsers {
   @@map("workspaces_users")
 }
 
+model Project {
+  id   String @id @default(cuid())
+  name String
+
+  private Boolean @default(false)
+
+  Workspace   Workspace? @relation(fields: [workspaceId], references: [id])
+  workspaceId String?    @map("workspace_id")
+  boards      Board[]
+
+  @@map("projects")
+}
+
 model Board {
   id   String @id @default(cuid())
   name String
   url  String
 
-  posts       Post[]
-  Workspace   Workspace?    @relation(fields: [workspaceId], references: [id])
-  workspaceId String?       @map("workspace_id")
-  settings    BoardSettings @relation(fields: [settingsId], references: [id])
-  settingsId  String        @map("settings_id")
+  posts      Post[]
+  project    Project?      @relation(fields: [projectId], references: [id])
+  projectId  String?       @map("project_id")
+  settings   BoardSettings @relation(fields: [settingsId], references: [id])
+  settingsId String        @map("settings_id")
 
   createdAt DateTime  @default(now()) @map("created_at")
   updatedAt DateTime? @updatedAt() @map("updated_at")
