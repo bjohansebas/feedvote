@@ -1,4 +1,5 @@
 import { prisma } from '@feedvote/database'
+import { GITHUB_CLIENT_ID, GITHUB_CLIENT_SECRET } from '@feedvote/utils'
 import { PrismaAdapter } from '@next-auth/prisma-adapter'
 
 import { AuthOptions } from 'next-auth'
@@ -12,8 +13,8 @@ export const authOptions: AuthOptions = {
   },
   providers: [
     GithubProvider({
-      clientId: process.env.GITHUB_CLIENT_ID as string,
-      clientSecret: process.env.GITHUB_CLIENT_SECRET as string,
+      clientId: GITHUB_CLIENT_ID as string,
+      clientSecret: GITHUB_CLIENT_SECRET as string,
     }),
   ],
   adapter: PrismaAdapter(prisma),
