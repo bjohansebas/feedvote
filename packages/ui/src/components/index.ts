@@ -1,2 +1,5 @@
 export * from './Button'
 export * from './Skeleton'
+export * from './Select'
+export * from './Popover'
+export * from './Avatar'
