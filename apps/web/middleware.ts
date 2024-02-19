@@ -16,12 +16,22 @@ export default async function middleware(req: NextRequest) {
   }
 
   // if there's no session and the path is /dashboard, redirect to /login
-  if (!session?.email && key === 'dashboard') {
+  if (!session?.email && (key === 'dashboard' || path === '/register/workspace')) {
     return NextResponse.redirect(new URL(`/login${path !== '/' ? `?next=${encodeURIComponent(path)}` : ''}`, req.url))
   }
 
   // if there's a session
   if (session?.email) {
+    // if the user was created in the last 10s and the path isn't /welcome, redirect to /welcome
+    // (this is a workaround because the `isNewUser` flag is triggered when a user does `dangerousEmailAccountLinking`)
+    if (
+      session?.user?.createdAt &&
+      new Date(session?.user?.createdAt).getTime() > Date.now() - 10000 &&
+      path !== '/register/workspace'
+    ) {
+      return NextResponse.redirect(new URL('/register/workspace', req.url))
+    }
+
     // if the path is /login or /register, redirect to "/dashboard"
     if (path === '/login' || path === '/register' || path === '/') {
       return NextResponse.redirect(new URL('/dashboard', req.url))

@@ -1,4 +1,4 @@
-import NextAuth, { DefaultSession } from 'next-auth'
+import NextAuth, { DefaultSession, DefaultUser } from 'next-auth'
 
 declare module 'next-auth' {
   /**
@@ -8,6 +8,11 @@ declare module 'next-auth' {
     user: {
       /** The user's postal address. */
       id?: string
+      createdAt?: Date
     } & DefaultSession['user']
+  }
+
+  interface User extends DefaultUser {
+    createdAt?: Date
   }
 }
