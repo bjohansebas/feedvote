@@ -1,4 +1,5 @@
 import { NextRequest } from 'next/server'
+import { RESERVED_KEYS } from '..'
 
 export const parseUrl = (req: NextRequest) => {
   const domain = req.headers.get('host') as string
@@ -15,4 +16,8 @@ export const parseUrl = (req: NextRequest) => {
   const fullKey = decodeURIComponent(path.slice(1)) // fullKey is the full path without the first slash (to account for multi-level subpaths, e.g. feedvote.dev/app/admin -> app/admin)
 
   return { domain, path, fullPath, key, fullKey }
+}
+
+export const isPrivateUrl = (url: string) => {
+  return RESERVED_KEYS.has(url)
 }

@@ -14,6 +14,10 @@
     "./functions": {
       "import": "./src/functions/index.ts",
       "default": "./src/functions/index.ts"
+    },
+    "./messages": {
+      "import": "./src/messages/index.ts",
+      "default": "./src/messages/index.ts"
     }
   },
   "peerDependencies": {
@@ -24,12 +28,13 @@
     "@feedvote/config": "workspace:*",
     "@types/node": "20.11.19",
     "@types/react": "18.2.55",
-    "typescript": "5.3.3",
     "next": "14.1.0",
-    "react": "18.2.0"
+    "react": "18.2.0",
+    "typescript": "5.3.3"
   },
   "dependencies": {
     "clsx": "2.1.0",
-    "tailwind-merge": "2.2.1"
+    "tailwind-merge": "2.2.1",
+    "zod": "3.22.4"
   }
 }
