@@ -17,4 +17,5 @@ export const RESERVED_KEYS = new Set([
   'blog',
   'contact',
   'about',
+  'roadmap',
 ])
