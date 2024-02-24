@@ -1,8 +1,8 @@
 import { parseUrl } from '@feedvote/utils'
 
-import { User } from 'next-auth'
+import type { User } from 'next-auth'
 import { getToken } from 'next-auth/jwt'
-import { NextRequest, NextResponse } from 'next/server'
+import { type NextRequest, NextResponse } from 'next/server'
 
 export default async function middleware(req: NextRequest) {
   const { path, key } = parseUrl(req)

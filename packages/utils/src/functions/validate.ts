@@ -1,4 +1,4 @@
-import { Schema } from 'zod'
+import type { Schema } from 'zod'
 
 // biome-ignore lint/suspicious/noExplicitAny: <explanation>
 export function validateSchema<S extends Schema>(schema: S, input: any) {

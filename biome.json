@@ -12,8 +12,12 @@
       "a11y": {
         "noSvgWithoutTitle": "off"
       },
-      "correctness": {
-        "useExhaustiveDependencies": "off"
+      "nursery": {
+        "useGroupedTypeImport": "error",
+        "useExportType": "error",
+        "useImportType": "error",
+        "noEmptyTypeParameters": "error",
+        "useShorthandFunctionType": "error"
       }
     }
   },

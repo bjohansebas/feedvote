@@ -2,7 +2,7 @@ import { prisma } from '@feedvote/database'
 import { GITHUB_CLIENT_ID, GITHUB_CLIENT_SECRET } from '@feedvote/utils/constants'
 
 import { PrismaAdapter } from '@next-auth/prisma-adapter'
-import { AuthOptions } from 'next-auth'
+import type { AuthOptions } from 'next-auth'
 import GithubProvider from 'next-auth/providers/github'
 
 const VERCEL_DEPLOYMENT = !!process.env.VERCEL_URL
