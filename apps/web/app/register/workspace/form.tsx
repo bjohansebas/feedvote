@@ -1,15 +1,22 @@
 'use client'
 
-import { Button } from '@feedvote/ui/components'
+import { LoadingSpinner } from '@feedvote/ui'
+import { Button, toast } from '@feedvote/ui/components'
 import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from '@feedvote/ui/components'
 import { Input } from '@feedvote/ui/components'
+import { CREATED_CODE } from '@feedvote/utils'
+
+import { createWorkspace } from '@lib/api/workspace'
+import { createWorkspaceSchema } from '@lib/schemas/workspace'
 
 import { zodResolver } from '@hookform/resolvers/zod'
-import { createWorkspaceSchema } from '@lib/schemas/workspace'
+import { useRouter } from 'next/navigation'
 import { useForm } from 'react-hook-form'
-import { z } from 'zod'
+import type { z } from 'zod'
 
 export const RegisterWorkspaceForm = () => {
+  const { push } = useRouter()
+
   const form = useForm<z.infer<typeof createWorkspaceSchema>>({
     resolver: zodResolver(createWorkspaceSchema),
     defaultValues: {
@@ -18,8 +25,17 @@ export const RegisterWorkspaceForm = () => {
     },
   })
 
-  function onSubmit(values: z.infer<typeof createWorkspaceSchema>) {
-    console.log(values)
+  const { isSubmitting } = form.formState
+
+  async function onSubmit(values: z.infer<typeof createWorkspaceSchema>) {
+    const { status } = await createWorkspace(values)
+    if (status === CREATED_CODE) {
+      toast.success('The workspace was created successfully!')
+
+      push('/dashboard')
+    } else {
+      toast.error('Something went wrong while creating the workspace.')
+    }
   }
 
   return (
@@ -54,7 +70,8 @@ export const RegisterWorkspaceForm = () => {
             </FormItem>
           )}
         />
-        <Button type="submit" className="mt-10 w-full">
+        <Button type="submit" className="mt-10 w-full" disabled={isSubmitting}>
+          {isSubmitting ? <LoadingSpinner /> : null}
           Create workspace
         </Button>
       </form>
