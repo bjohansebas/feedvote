@@ -11,5 +11,14 @@ module.exports = {
       },
     ],
   },
+  async redirects() {
+    return [
+      {
+        source: '/',
+        destination: '/login',
+        permanent: false,
+      },
+    ]
+  },
   transpilePackages: ['@feedvote/ui', '@feedvote/ui/components', '@feedvote/ui/icons'],
 }
