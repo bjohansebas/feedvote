@@ -13,7 +13,7 @@ importers:
         version: 1.5.3
       '@feedvote/config':
         specifier: workspace:*
-        version: link:packages/config
+        version: link:config
       turbo:
         specifier: 1.12.4
         version: 1.12.4
@@ -65,7 +65,7 @@ importers:
     devDependencies:
       '@feedvote/config':
         specifier: workspace:*
-        version: link:../../packages/config
+        version: link:../../config
       '@types/node':
         specifier: 20.11.19
         version: 20.11.19
@@ -94,7 +94,7 @@ importers:
         specifier: 5.3.3
         version: 5.3.3
 
-  packages/config:
+  config:
     devDependencies:
       tailwindcss:
         specifier: 3.4.1
@@ -111,7 +111,7 @@ importers:
     devDependencies:
       '@feedvote/config':
         specifier: workspace:*
-        version: link:../config
+        version: link:../../config
       '@types/node':
         specifier: 20.11.19
         version: 20.11.19
@@ -157,7 +157,7 @@ importers:
     devDependencies:
       '@feedvote/config':
         specifier: workspace:*
-        version: link:../config
+        version: link:../../config
       '@feedvote/utils':
         specifier: workspace:*
         version: link:../utils
@@ -191,7 +191,7 @@ importers:
     devDependencies:
       '@feedvote/config':
         specifier: workspace:*
-        version: link:../config
+        version: link:../../config
       '@types/node':
         specifier: 20.11.19
         version: 20.11.19
