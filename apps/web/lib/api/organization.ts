@@ -38,6 +38,9 @@ export const getOrganizationUser = async (): Promise<ActionResponse<Organization
         },
       },
     },
+    include: {
+      projects: true,
+    },
   })
 
   return {
