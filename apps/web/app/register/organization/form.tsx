@@ -6,8 +6,8 @@ import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from '
 import { Input } from '@feedvote/ui/components'
 import { CREATED_CODE } from '@feedvote/utils'
 
-import { createWorkspace } from '@lib/api/workspace'
-import { createWorkspaceSchema } from '@lib/schemas/workspace'
+import { createOrganization } from '@lib/api/organization'
+import { createOrganizationSchema } from '@lib/schemas/organization'
 
 import { zodResolver } from '@hookform/resolvers/zod'
 import { useRouter } from 'next/navigation'
@@ -17,8 +17,8 @@ import type { z } from 'zod'
 export const RegisterWorkspaceForm = () => {
   const { push } = useRouter()
 
-  const form = useForm<z.infer<typeof createWorkspaceSchema>>({
-    resolver: zodResolver(createWorkspaceSchema),
+  const form = useForm<z.infer<typeof createOrganizationSchema>>({
+    resolver: zodResolver(createOrganizationSchema),
     defaultValues: {
       name: '',
       url: '',
@@ -27,8 +27,8 @@ export const RegisterWorkspaceForm = () => {
 
   const { isSubmitting } = form.formState
 
-  async function onSubmit(values: z.infer<typeof createWorkspaceSchema>) {
-    const { status } = await createWorkspace(values)
+  async function onSubmit(values: z.infer<typeof createOrganizationSchema>) {
+    const { status } = await createOrganization(values)
     if (status === CREATED_CODE) {
       toast.success('The workspace was created successfully!')
 

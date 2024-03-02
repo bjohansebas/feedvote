@@ -1,7 +1,7 @@
 'use server'
 
 import type { ActionResponse } from '@/types'
-import { type Workspace, prisma } from '@feedvote/database'
+import { type Organization, prisma } from '@feedvote/database'
 import {
   BAD_REQUEST_CODE,
   CONFLICT_CODE,
@@ -14,14 +14,12 @@ import {
 } from '@feedvote/utils'
 
 import { authOptions } from '@lib/auth'
-import { createWorkspaceSchema } from '@lib/schemas/workspace'
+import { createOrganizationSchema } from '@lib/schemas/organization'
 
 import { getServerSession } from 'next-auth'
 import type { z } from 'zod'
 
-export const createWorkspace = async (
-  data: z.infer<typeof createWorkspaceSchema>,
-): Promise<ActionResponse<Workspace>> => {
+export const getOrganizationUser = async (): Promise<ActionResponse<Organization[]>> => {
   const session = await getServerSession(authOptions)
 
   if (!session?.user?.id) {
@@ -32,7 +30,36 @@ export const createWorkspace = async (
     }
   }
 
-  const verifyData = validateSchema(createWorkspaceSchema, data)
+  const Organization = await prisma.organization.findMany({
+    where: {
+      users: {
+        some: {
+          userId: session.user.id,
+        },
+      },
+    },
+  })
+
+  return {
+    data: Organization,
+    status: CREATED_CODE,
+  }
+}
+
+export const createOrganization = async (
+  data: z.infer<typeof createOrganizationSchema>,
+): Promise<ActionResponse<Organization>> => {
+  const session = await getServerSession(authOptions)
+
+  if (!session?.user?.id) {
+    return {
+      data: null,
+      status: UNAUTHORIZED_CODE,
+      message: LOGIN_REQUIRED,
+    }
+  }
+
+  const verifyData = validateSchema(createOrganizationSchema, data)
 
   if (!verifyData.success) {
     return {
@@ -42,7 +69,7 @@ export const createWorkspace = async (
     }
   }
 
-  const existSlug = await prisma.workspace.findUnique({
+  const existSlug = await prisma.organization.findUnique({
     where: {
       slug: data.url,
     },
@@ -60,7 +87,7 @@ export const createWorkspace = async (
   }
 
   try {
-    const responseCreated = await prisma.workspace.create({
+    const responseCreated = await prisma.organization.create({
       data: {
         name: data.name,
         slug: data.url,

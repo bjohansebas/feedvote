@@ -49,10 +49,10 @@ model User {
   accounts      Account[]
   sessions      Session[]
 
-  posts      Post[]
-  comments   Comment[]
-  votes      Vote[]
-  workspaces WorkspaceUsers[]
+  posts         Post[]
+  comments      Comment[]
+  votes         Vote[]
+  organizations OrganizationUsers[]
 
   updatedAt DateTime @updatedAt @map("updated_at")
   createdAt DateTime @default(now()) @map("created_at")
@@ -76,50 +76,50 @@ enum Role {
   member
 }
 
-model Workspace {
+model Organization {
   id   String  @id @default(cuid())
   name String
   slug String  @unique
   logo String?
 
-  usersLimit Int               @default(1) @map("users_limit")
-  invite     WorkspaceInvite[]
-  users      WorkspaceUsers[]
+  usersLimit Int                  @default(1) @map("users_limit")
+  invite     OrganizationInvite[]
+  users      OrganizationUsers[]
   projects   Project[]
 
   createdAt DateTime @default(now()) @map("created_at")
   updatedAt DateTime @updatedAt @map("updated_at")
 
-  @@map("workspaces")
+  @@map("organizations")
 }
 
-model WorkspaceInvite {
-  email       String
-  expires     DateTime
-  workspace   Workspace @relation(fields: [workspaceId], references: [id], onDelete: Cascade)
-  workspaceId String    @map("workspace_id")
-  createdAt   DateTime  @default(now()) @map("created_at")
+model OrganizationInvite {
+  email          String
+  expires        DateTime
+  organization   Organization @relation(fields: [organizationId], references: [id], onDelete: Cascade)
+  organizationId String       @map("organization_id")
+  createdAt      DateTime     @default(now()) @map("created_at")
 
-  @@unique([email, workspaceId])
-  @@index([workspaceId])
-  @@map("workspaces_invites")
+  @@unique([email, organizationId])
+  @@index([organizationId])
+  @@map("organizations_invites")
 }
 
-model WorkspaceUsers {
+model OrganizationUsers {
   id   String @id @default(cuid())
   role Role   @default(member)
 
   createdAt DateTime @default(now()) @map("created_at")
   updatedAt DateTime @updatedAt @map("updated_at")
 
-  user        User      @relation(fields: [userId], references: [id], onDelete: Cascade)
-  userId      String    @map("user_id")
-  workspace   Workspace @relation(fields: [workspaceId], references: [id], onDelete: Cascade)
-  workspaceId String    @map("workspace_id")
+  user           User         @relation(fields: [userId], references: [id], onDelete: Cascade)
+  userId         String       @map("user_id")
+  organization   Organization @relation(fields: [organizationId], references: [id], onDelete: Cascade)
+  organizationId String       @map("organizations_id")
 
-  @@unique([userId, workspaceId])
-  @@index([workspaceId])
-  @@map("workspaces_users")
+  @@unique([userId, organizationId])
+  @@index([organizationId])
+  @@map("organizations_users")
 }
 
 model Project {
@@ -128,9 +128,9 @@ model Project {
 
   private Boolean @default(false)
 
-  Workspace   Workspace? @relation(fields: [workspaceId], references: [id])
-  workspaceId String?    @map("workspace_id")
-  boards      Board[]
+  organization   Organization? @relation(fields: [organizationId], references: [id])
+  organizationId String?       @map("organization_id")
+  boards         Board[]
 
   @@map("projects")
 }

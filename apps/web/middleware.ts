@@ -16,7 +16,7 @@ export default async function middleware(req: NextRequest) {
   }
 
   // if there's no session and the path is /dashboard, redirect to /login
-  if (!session?.email && (key === 'dashboard' || path === '/register/workspace')) {
+  if (!session?.email && (key === 'dashboard' || path === '/register/organization')) {
     return NextResponse.redirect(new URL(`/login${path !== '/' ? `?next=${encodeURIComponent(path)}` : ''}`, req.url))
   }
 
@@ -27,9 +27,9 @@ export default async function middleware(req: NextRequest) {
     if (
       session?.user?.createdAt &&
       new Date(session?.user?.createdAt).getTime() > Date.now() - 10000 &&
-      path !== '/register/workspace'
+      path !== '/register/organization'
     ) {
-      return NextResponse.redirect(new URL('/register/workspace', req.url))
+      return NextResponse.redirect(new URL('/register/organization', req.url))
     }
 
     // if the path is /login or /register, redirect to "/dashboard"
