@@ -32,7 +32,7 @@ export const RegisterWorkspaceForm = () => {
     if (status === CREATED_CODE) {
       toast.success('The workspace was created successfully!')
 
-      push('/dashboard')
+      push(`/register/project?og=${values.url}`)
     } else {
       toast.error('Something went wrong while creating the workspace.')
     }
