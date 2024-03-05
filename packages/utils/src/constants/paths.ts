@@ -1,6 +1,6 @@
 export const PRIVATE_KEYS = new Set(['dashboard', 'account'])
 
-export const PRIVATE_PATHS = new Set(['/register/organization'])
+export const PRIVATE_PATHS = new Set(['/register/organization', '/register/project'])
 
 export const RESERVED_KEYS = new Set([
   'docs',

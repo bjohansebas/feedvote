@@ -1,4 +1,4 @@
-import { parseUrl } from '@feedvote/utils'
+import { PRIVATE_KEYS, PRIVATE_PATHS, parseUrl } from '@feedvote/utils'
 
 import type { User } from 'next-auth'
 import { getToken } from 'next-auth/jwt'
@@ -15,8 +15,8 @@ export default async function middleware(req: NextRequest) {
     user?: User
   }
 
-  // if there's no session and the path is /dashboard, redirect to /login
-  if (!session?.email && (key === 'dashboard' || path === '/register/organization')) {
+  // if there's no session and the path is private route, redirect to /login
+  if (!session?.email && (PRIVATE_KEYS.has(key) || PRIVATE_PATHS.has(path))) {
     return NextResponse.redirect(new URL(`/login${path !== '/' ? `?next=${encodeURIComponent(path)}` : ''}`, req.url))
   }
 
