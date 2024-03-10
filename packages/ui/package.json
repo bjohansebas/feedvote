@@ -20,9 +20,9 @@
   "devDependencies": {
     "@feedvote/config": "workspace:*",
     "@feedvote/utils": "workspace:*",
-    "@types/node": "20.11.19",
-    "@types/react": "18.2.55",
-    "@types/react-dom": "18.2.19",
+    "@types/node": "20.11.25",
+    "@types/react": "18.2.64",
+    "@types/react-dom": "18.2.21",
     "react": "18.2.0",
     "typescript": "5.3.3"
   },
@@ -34,9 +34,9 @@
     "@radix-ui/react-select": "2.0.0",
     "@radix-ui/react-slot": "1.0.2",
     "class-variance-authority": "0.7.0",
-    "lucide-react": "0.331.0",
+    "lucide-react": "0.354.0",
     "next-themes": "0.2.1",
-    "react-hook-form": "7.50.1",
-    "sonner": "1.4.2"
+    "react-hook-form": "7.51.0",
+    "sonner": "1.4.3"
   }
 }
