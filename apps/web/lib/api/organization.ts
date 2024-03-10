@@ -17,6 +17,7 @@ import { authOptions } from '@lib/auth'
 import { createOrganizationSchema } from '@lib/schemas/organization'
 
 import { getServerSession } from 'next-auth'
+import { revalidateTag } from 'next/cache'
 import type { z } from 'zod'
 
 export const getOrganizationUser = async (): Promise<ActionResponse<Organization[]>> => {
@@ -102,6 +103,8 @@ export const createOrganization = async (
         },
       },
     })
+
+    revalidateTag('organizations')
 
     return {
       data: responseCreated,
