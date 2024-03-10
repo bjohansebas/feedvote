@@ -123,8 +123,9 @@ model OrganizationUsers {
 }
 
 model Project {
-  id   String @id @default(cuid())
-  name String
+  id          String  @id @default(cuid())
+  name        String
+  description String?
 
   private Boolean @default(false)
 
