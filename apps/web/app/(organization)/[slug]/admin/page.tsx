@@ -32,7 +32,7 @@ export default async function AdminWorkspacePage({ params }: { params: { slug: s
               >
                 <h3 className="font-semibold">{name}</h3>
                 <p className="text-muted-foreground">{description}</p>
-                <Link href={`${params.slug}/${name}`} className="absolute inset-0 z-10 block" />
+                <Link href={`/${params.slug}/${name}`} className="absolute inset-0 z-10 block" />
               </article>
             ))}
           </div>
