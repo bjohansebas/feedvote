@@ -40,7 +40,7 @@ export const RegisterWorkspaceForm = () => {
 
   return (
     <Form {...form}>
-      <form onSubmit={form.handleSubmit(onSubmit)} className="mx-auto space-y-4 w-full max-w-sm px-2">
+      <form onSubmit={form.handleSubmit(onSubmit)} className="mx-auto w-full max-w-sm space-y-4 px-2">
         <FormField
           control={form.control}
           name="name"
@@ -61,9 +61,9 @@ export const RegisterWorkspaceForm = () => {
             <FormItem>
               <FormLabel>Workspace URL</FormLabel>
               <FormControl>
-                <div className="flex text-sm items-center bg-background/50 border rounded-md">
+                <div className="flex items-center rounded-md border bg-background/50 text-sm">
                   <span className="px-3 text-muted-foreground">feedvote.dev/</span>
-                  <Input {...field} required className="border-0 rounded-l-none border-l" />
+                  <Input {...field} required className="rounded-l-none border-0 border-l" />
                 </div>
               </FormControl>
               <FormMessage />

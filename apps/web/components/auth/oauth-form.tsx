@@ -20,12 +20,12 @@ export function OAuthForm() {
       className="w-full"
       size="lg"
     >
-      <GithubIcon className="w-5 h-5" />
+      <GithubIcon className="h-5 w-5" />
       Continue with Github
     </Button>
   )
 }
 
 export function OAuthFormPlaceholder() {
-  return <Skeleton className="w-full h-11" />
+  return <Skeleton className="h-11 w-full" />
 }

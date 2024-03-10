@@ -5,8 +5,8 @@ export default async function DashboardPage() {
   const organization = await getOrganizationUser()
 
   return (
-    <main className="max-w-5xl mx-auto mt-10 px-5">
-      <div className="flex flex-col w-full">
+    <main className="mx-auto mt-10 max-w-5xl px-5">
+      <div className="flex w-full flex-col">
         {organization.data?.map(({ logo, name, slug, id }) => (
           <CardOrganization logo={logo} name={name} slug={slug} key={id} />
         ))}

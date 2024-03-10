@@ -14,19 +14,19 @@ export const MenuApp = async () => {
   const organizations = await getOrganizationUser()
 
   return (
-    <header className="bg-card border-b-2 h-16 flex items-center px-6 md:px-12 gap-3">
+    <header className="flex h-16 items-center gap-3 border-b-2 bg-card px-6 md:px-12">
       <div className="flex items-center gap-6">
         <Link href="/">
           <FeedVoteIcon className="h-7 w-7" />
         </Link>
       </div>
-      <nav className="w-full flex justify-between items-center">
-        <div className="flex gap-2 items-center">
+      <nav className="flex w-full items-center justify-between">
+        <div className="flex items-center gap-2">
           <SlashIcon className="size-6" />
           <SelectOrganization session={session} organizations={organizations.data} />
         </div>
         <div className="flex items-center">
-          <Suspense fallback={<Skeleton className="rounded-full w-9 h-9" />}>
+          <Suspense fallback={<Skeleton className="h-9 w-9 rounded-full" />}>
             <UserDropdown />
           </Suspense>
         </div>

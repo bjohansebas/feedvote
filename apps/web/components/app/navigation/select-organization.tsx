@@ -37,7 +37,7 @@ export const SelectOrganization = ({
         </Button>
       </PopoverTrigger>
       <PopoverContent className="flex flex-col gap-2">
-        <h2 className="text-sm font-bold">My organizations</h2>
+        <h2 className="font-bold text-sm">My organizations</h2>
         {organizations?.map(({ name, slug, logo }) => (
           <Button key={name} variant="ghost" size="sm" className="w-full justify-start font-semibold" asChild>
             <Link href={`/${slug}/admin`}>

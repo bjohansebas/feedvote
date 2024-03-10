@@ -6,8 +6,6 @@ import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from '
 import { Input } from '@feedvote/ui/components'
 import { CREATED_CODE } from '@feedvote/utils'
 
-import { createOrganization } from '@lib/api/organization'
-
 import type { Organization } from '@feedvote/database'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { createProject } from '@lib/api/project'
@@ -45,7 +43,7 @@ export const RegisterProjectForm = ({ organizations }: { organizations: Organiza
 
   return (
     <Form {...form}>
-      <form onSubmit={form.handleSubmit(onSubmit)} className="mx-auto space-y-4 w-full max-w-sm px-2">
+      <form onSubmit={form.handleSubmit(onSubmit)} className="mx-auto w-full max-w-sm space-y-4 px-2">
         <FormField
           control={form.control}
           name="name"
