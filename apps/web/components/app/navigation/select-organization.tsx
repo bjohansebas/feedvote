@@ -2,7 +2,7 @@
 
 import type { Organization } from '@feedvote/database'
 import { Avatar, AvatarFallback, AvatarImage, Button, Popover, PopoverContent, PopoverTrigger } from '@feedvote/ui'
-import { parsePath, stringAvatar } from '@feedvote/utils'
+import { cn, parsePath, stringAvatar } from '@feedvote/utils'
 import { PlusIcon } from 'lucide-react'
 import type { Session } from 'next-auth'
 import Link from 'next/link'
@@ -11,7 +11,8 @@ import { usePathname } from 'next/navigation'
 export const SelectOrganization = ({
   session,
   organizations,
-}: { session: Session | null; organizations: Organization[] | null }) => {
+  className,
+}: { session: Session | null; organizations: Organization[] | null; className?: string }) => {
   const pathname = usePathname()
   const pathKey = parsePath(pathname).key
 
@@ -27,7 +28,7 @@ export const SelectOrganization = ({
   return (
     <Popover>
       <PopoverTrigger asChild>
-        <Button size="sm" variant="ghost" className="font-bold">
+        <Button size="sm" variant="ghost" className={cn('font-bold', className)}>
           <Avatar className="size-6">
             <AvatarImage src={organizationPath?.logo ?? '/_static/logo.png'} className="size-6" />
             <AvatarFallback>{stringAvatar(organizationPath?.name || 'l')}</AvatarFallback>

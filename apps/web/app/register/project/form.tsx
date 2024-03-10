@@ -33,11 +33,11 @@ export const RegisterProjectForm = ({ organizations }: { organizations: Organiza
   const { isSubmitting } = form.formState
 
   async function onSubmit(values: z.infer<typeof createProjectSchema>) {
-    console.log(values)
-    const { status } = await createProject(values)
+    const { status, data } = await createProject(values)
     if (status === CREATED_CODE) {
       toast.success('The project was created successfully!')
-      push('/dashboard')
+
+      push(`/${data?.slug}/admin`)
     } else {
       toast.error('Something went wrong while creating the project.')
     }
