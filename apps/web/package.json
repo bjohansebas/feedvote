@@ -2,7 +2,7 @@
   "name": "web",
   "private": true,
   "scripts": {
-    "dev": "next dev --port 8888",
+    "dev": "next dev --port 8888 --turbo",
     "build": "next build",
     "start": "next start",
     "lint": "next lint"

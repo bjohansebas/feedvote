@@ -1,15 +1,14 @@
 /** @type {import('next').NextConfig} */
-module.exports = {
-  experimental: {
-    useDeploymentId: true,
-    useDeploymentIdServerActions: true,
-  },
+export default {
   images: {
     remotePatterns: [
       {
         hostname: 'avatars.githubusercontent.com',
       },
     ],
+  },
+  logging: {
+    fetches: { fullUrl: true },
   },
   async redirects() {
     return [
