@@ -2,14 +2,10 @@ import { Avatar, AvatarFallback, AvatarImage } from '@feedvote/ui'
 import { stringAvatar } from '@feedvote/utils'
 import { getProjectsOrganization } from '@lib/api/project'
 import { FolderKanbanIcon } from 'lucide-react'
-
-import { unstable_cache as cache } from 'next/cache'
 import Link from 'next/link'
 
-const getProjects = cache(getProjectsOrganization, ['projects'], { tags: ['projects'] })
-
 export const CardOrganization = async ({ logo, name, slug }: { logo: string | null; name: string; slug: string }) => {
-  const projects = await getProjects(slug)
+  const projects = await getProjectsOrganization(slug)
 
   return (
     <section className="relative flex flex-col gap-6 rounded-md border bg-card px-5 pt-6 pb-5 transition-all hover:border-primary">

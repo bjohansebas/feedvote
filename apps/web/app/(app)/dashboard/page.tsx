@@ -1,16 +1,10 @@
 import { Button } from '@feedvote/ui'
 import { getOrganizationUser } from '@lib/api/organization'
 import { CardOrganization } from '@ui/app/dashboard/card-organizations'
-
-import { unstable_cache as cache } from 'next/cache'
 import Link from 'next/link'
 
-const getOrganizations = cache(getOrganizationUser, ['organizations'], {
-  tags: ['organizations'],
-})
-
 export default async function DashboardPage() {
-  const organization = await getOrganizations()
+  const organization = await getOrganizationUser()
 
   return (
     <main className="mx-auto mt-10 max-w-5xl space-y-5 px-5 pb-20">
