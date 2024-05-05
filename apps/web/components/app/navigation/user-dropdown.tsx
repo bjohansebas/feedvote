@@ -1,13 +1,11 @@
 import { Avatar, AvatarFallback, AvatarImage, Popover, PopoverContent, PopoverTrigger } from '@feedvote/ui/components'
 import { stringAvatar } from '@feedvote/utils/functions'
 
-import { getServerSession } from 'next-auth'
-
-import { authOptions } from '@/lib/auth'
+import { auth } from '@/lib/auth'
 import { ButtonLogout } from './button-logout'
 
 export default async function UserDropdown() {
-  const session = await getServerSession(authOptions)
+  const session = await auth()
 
   return (
     <Popover>

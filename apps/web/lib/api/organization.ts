@@ -13,15 +13,14 @@ import {
   validateSchema,
 } from '@feedvote/utils'
 
-import { authOptions } from '@lib/auth'
+import { auth } from '@lib/auth'
 import { createOrganizationSchema } from '@lib/schemas/organization'
 
-import { getServerSession } from 'next-auth'
 import { revalidateTag } from 'next/cache'
 import type { z } from 'zod'
 
 export const getOrganizationUser = async (): Promise<ActionResponse<Organization[]>> => {
-  const session = await getServerSession(authOptions)
+  const session = await auth()
 
   if (!session?.user?.id) {
     return {
@@ -53,7 +52,7 @@ export const getOrganizationUser = async (): Promise<ActionResponse<Organization
 export const createOrganization = async (
   data: z.infer<typeof createOrganizationSchema>,
 ): Promise<ActionResponse<Organization>> => {
-  const session = await getServerSession(authOptions)
+  const session = await auth()
 
   if (!session?.user?.id) {
     return {

@@ -4,13 +4,12 @@ import Link from 'next/link'
 import { Suspense } from 'react'
 
 import { getOrganizationUser } from '@lib/api/organization'
-import { authOptions } from '@lib/auth'
-import { getServerSession } from 'next-auth'
+import { auth } from '@lib/auth'
 import { SelectOrganization } from './select-organization'
 import UserDropdown from './user-dropdown'
 
 export const MenuApp = async () => {
-  const session = await getServerSession(authOptions)
+  const session = await auth()
   const organizations = await getOrganizationUser()
 
   return (

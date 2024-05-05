@@ -1,37 +1,20 @@
 import { prisma } from '@feedvote/database'
-import { GITHUB_CLIENT_ID, GITHUB_CLIENT_SECRET } from '@feedvote/utils/constants'
 
-import { PrismaAdapter } from '@next-auth/prisma-adapter'
-import type { AuthOptions } from 'next-auth'
+import { PrismaAdapter } from '@auth/prisma-adapter'
+import type { NextAuthConfig } from 'next-auth'
+import NextAuth from 'next-auth'
 import GithubProvider from 'next-auth/providers/github'
 
-const VERCEL_DEPLOYMENT = !!process.env.VERCEL_URL
-
-export const authOptions: AuthOptions = {
+const config: NextAuthConfig = {
   session: {
     strategy: 'jwt',
   },
   providers: [
     GithubProvider({
-      clientId: GITHUB_CLIENT_ID as string,
-      clientSecret: GITHUB_CLIENT_SECRET as string,
       allowDangerousEmailAccountLinking: true,
     }),
   ],
   adapter: PrismaAdapter(prisma),
-  cookies: {
-    sessionToken: {
-      name: `${VERCEL_DEPLOYMENT ? '__Secure-' : ''}next-auth.session-token`,
-      options: {
-        httpOnly: true,
-        sameSite: 'lax',
-        path: '/',
-        // When working on localhost, the cookie domain must be omitted entirely (https://stackoverflow.com/a/1188145)
-        domain: VERCEL_DEPLOYMENT ? `.${process.env.NEXT_PUBLIC_APP_DOMAIN}` : undefined,
-        secure: VERCEL_DEPLOYMENT,
-      },
-    },
-  },
   pages: {
     error: '/login',
   },
@@ -70,3 +53,5 @@ export const authOptions: AuthOptions = {
     },
   },
 }
+
+export const { handlers, auth, signIn, signOut, unstable_update: update } = NextAuth(config)

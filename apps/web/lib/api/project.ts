@@ -10,14 +10,13 @@ import {
   UNAUTHORIZED_CODE,
   validateSchema,
 } from '@feedvote/utils'
-import { authOptions } from '@lib/auth'
+import { auth } from '@lib/auth'
 import { createProjectSchema } from '@lib/schemas/project'
-import { getServerSession } from 'next-auth'
 import { revalidateTag } from 'next/cache'
 import type { z } from 'zod'
 
 export const getProjectsOrganization = async (slug: string): Promise<ActionResponse<Project[]>> => {
-  const session = await getServerSession(authOptions)
+  const session = await auth()
 
   if (!session?.user?.id) {
     return {
@@ -57,7 +56,7 @@ export const getProjectsOrganization = async (slug: string): Promise<ActionRespo
 export const createProject = async (
   data: z.infer<typeof createProjectSchema>,
 ): Promise<ActionResponse<Project & { slug: string }>> => {
-  const session = await getServerSession(authOptions)
+  const session = await auth()
 
   if (!session?.user?.id) {
     return {

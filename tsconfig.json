@@ -1,3 +1,0 @@
-{
-  "extends": "@feedvote/config/tsconfig/base.json"
-}

@@ -1,27 +1,18 @@
 import { PRIVATE_KEYS, PRIVATE_PATHS, parseUrl } from '@feedvote/utils'
-
-import type { User } from 'next-auth'
-import { getToken } from 'next-auth/jwt'
+import { auth } from '@lib/auth'
 import { type NextRequest, NextResponse } from 'next/server'
 
 export default async function middleware(req: NextRequest) {
   const { path, key } = parseUrl(req)
 
-  const session = (await getToken({
-    req,
-    secret: process.env.NEXTAUTH_SECRET,
-  })) as {
-    email?: string
-    user?: User
-  }
-
+  const session = await auth()
   // if there's no session and the path is private route, redirect to /login
-  if (!session?.email && (PRIVATE_KEYS.has(key) || PRIVATE_PATHS.has(path))) {
+  if (!session?.user.email && (PRIVATE_KEYS.has(key) || PRIVATE_PATHS.has(path))) {
     return NextResponse.redirect(new URL(`/login${path !== '/' ? `?next=${encodeURIComponent(path)}` : ''}`, req.url))
   }
 
   // if there's a session
-  if (session?.email) {
+  if (session?.user.email) {
     // if the user was created in the last 10s and the path isn't /welcome, redirect to /welcome
     // (this is a workaround because the `isNewUser` flag is triggered when a user does `dangerousEmailAccountLinking`)
     if (
