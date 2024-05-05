@@ -9,6 +9,7 @@ import { Toaster } from '@feedvote/ui'
 
 import { APTABASE_APP_KEY } from '@feedvote/utils/constants'
 import { cn } from '@feedvote/utils/functions'
+import '@lib/env'
 
 export const metadata: Metadata = {
   title: 'FeedVote',
